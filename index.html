@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Rating Rasa - Tugas 3</title>
+<style>
+body{font-family:Arial;background:#111;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh}
+.card{background:#1e1e1e;padding:30px;border-radius:16px;width:90%;max-width:400px;text-align:center}
+input[type="range"]{width:100%;margin:20px 0}
+#labelRasa{font-size:24px;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Rating Rasa</h1>
+  <input type="range" id="rating" min="0" max="10" step="0.5" value="5" oninput="updateRasa()" onchange="updateRasa()">
+  <div id="nilai">Nilai: 5</div>
+  <div id="labelRasa">Lumayan</div>
+</div>
+<script>
+function updateRasa(){
+  const val = parseFloat(document.getElementById('rating').value);
+  document.getElementById('nilai').innerText = 'Nilai: ' + val;
+  let label = '';
+  if(val <= 2.5) label = 'Buruk';
+  else if(val <= 5) label = 'Lumayan';
+  else if(val <= 8) label = 'Enak';
+  else label = 'Enak Banget';
+  if(val >= 9.5) label = 'Enak Banget';
+  document.getElementById('labelRasa').innerText = label;
+}
+document.getElementById('rating').addEventListener('input', updateRasa);
+document.getElementById('rating').addEventListener('change', updateRasa);
+updateRasa();
+</script>
+</body>
+</html>
